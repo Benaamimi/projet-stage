@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home
+{% endblock %}
 
 {% block body %}
 
-  <h1 class="text-center my-5">home page</h1>
+	<h1 class="text-center my-5">Home page</h1>
+
+	<div class="text-center my-5">
+		{% if not app.user %}
+			<a class="btn btn-primary" href="{{path('app_register')}}">Inscription</a>
+		{% endif %}
+	</div>
 
 {% endblock %}

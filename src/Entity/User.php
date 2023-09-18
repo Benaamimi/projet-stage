@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -28,6 +29,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $prenom = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $pseudo = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $civilite = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateEnregistrement = null;
 
     public function getId(): ?int
     {
@@ -97,5 +113,65 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): static
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getCivilite(): ?string
+    {
+        return $this->civilite;
+    }
+
+    public function setCivilite(string $civilite): static
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    public function getDateEnregistrement(): ?\DateTimeInterface
+    {
+        return $this->dateEnregistrement;
+    }
+
+    public function setDateEnregistrement(\DateTimeInterface $dateEnregistrement): static
+    {
+        $this->dateEnregistrement = $dateEnregistrement;
+
+        return $this;
     }
 }
